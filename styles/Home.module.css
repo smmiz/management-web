@@ -1,0 +1,44 @@
+/* styles/Home.module.css */
+
+.title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+}
+
+/* Usamos CSS Grid para el layout de la galería */
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #fff;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.cardImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4; /* Proporción para fotos de retrato */
+}
+
+.cardContent {
+  padding: 1.25rem;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+}

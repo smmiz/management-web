@@ -1,0 +1,97 @@
+/* styles/ModelProfile.module.css */
+
+.profileContainer {
+    max-width: 1000px;
+    margin: 2rem auto;
+}
+
+.mainInfo {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+    .mainInfo {
+        grid-template-columns: 350px 1fr;
+        gap: 3rem;
+    }
+}
+
+.coverImageWrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.details {
+    padding-top: 1rem;
+}
+
+.name {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem 0;
+    line-height: 1.1;
+}
+
+.nationality {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.5rem;
+}
+
+/* Layout de 2 columnas con CSS Grid para las medidas */
+.measurementsGrid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.75rem 1.5rem;
+    font-size: 1rem;
+}
+
+.measurementsGrid span:nth-child(odd) {
+    font-weight: 500;
+    color: #333;
+}
+
+.socialLinks a {
+    margin-right: 1.5rem;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.2s;
+}
+
+.socialLinks a:hover {
+    color: #888;
+}
+
+/* Layout con Flexbox para la galería de portafolio */
+.portfolioGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.portfolioImageWrapper {
+    position: relative;
+    flex-grow: 1;
+    height: 400px;
+    min-width: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}

@@ -1,0 +1,79 @@
+/* styles/globals.css */
+
+/* Usamos las propiedades personalizadas de CSS para definir nuestros temas */
+:root {
+  --font-main: 'Space Grotesk', sans-serif;
+  --color-background: #fdfdfd;
+  --color-text: #1a1a1a;
+  --color-primary: #333;
+  --color-border: #eaeaea;
+  --max-width: 1200px;
+  --navbar-height: 70px;
+}
+
+/* Reseteo básico */
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-main);
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Contenedor principal para centrar el contenido */
+.main-container {
+  min-height: calc(100vh - var(--navbar-height) - 80px); /* 80px para el footer */
+  padding: 2rem 1rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* Estilos para la barra de navegación */
+.navbar {
+  height: var(--navbar-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  border-bottom: 1px solid var(--color-border);
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-logo {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.navbar-links a {
+  margin-left: 1.5rem;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+
+.navbar-links a:hover {
+  color: #888;
+}
+
+/* Estilos para el pie de página */
+.footer {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.9rem;
+}

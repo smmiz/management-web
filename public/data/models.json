@@ -1,0 +1,92 @@
+[
+  {
+    "gender": "woman",
+    "name": "Sofia",
+    "lastName": "Gomez",
+    "nationality": "Colombiana",
+    "instagram": "sofia_g",
+    "tiktok": "sofiag",
+    "slug": "sofia-gomez",
+    "hairColor": "Castaño",
+    "eyeColor": "Miel",
+    "height": 175,
+    "shoeSize": 38,
+    "bust": 85,
+    "waist": 62,
+    "hips": 90,
+    "coverImageUrl": "https://res.cloudinary.com/dj9qiuosk/image/upload/v1750662984/Whisk_4411606f73_fqdnup.jpg",
+    "portfolioImageUrls": [
+      "https://res.cloudinary.com/dj9qiuosk/image/upload/v1750662971/Whisk_1ea99b26b2_ssmtbl.jpg",
+      "https://res.cloudinary.com/dj9qiuosk/image/upload/v1750662969/Whisk_6b3ca6c8c7_wztp5l.jpg",
+      "https://res.cloudinary.com/dj9qiuosk/image/upload/v1750662967/Whisk_e2e9a8bb20_zwwtk0.jpg"
+    ]
+  },
+  {
+    "gender": "woman",
+    "name": "Valentina",
+    "lastName": "Rojas",
+    "nationality": "Argentina",
+    "instagram": "valenrojas",
+    "tiktok": "valenrojastk",
+    "slug": "valentina-rojas",
+    "hairColor": "Rubio",
+    "eyeColor": "Azules",
+    "height": 178,
+    "shoeSize": 39,
+    "bust": 88,
+    "waist": 64,
+    "hips": 92,
+    "coverImageUrl": "https://res.cloudinary.com/dj9qiuosk/image/upload/v1750658739/Whisk_be327c6915_iz1qo3.jpg",
+    "portfolioImageUrls": [
+      "https://res.cloudinary.com/dj9qiuosk/image/upload/v1750663031/Whisk_1430731700_icc1ug.jpg",
+      "https://res.cloudinary.com/dj9qiuosk/image/upload/v1750663041/Whisk_1e3ce3a21f_bniyvg.jpg",
+      "https://res.cloudinary.com/dj9qiuosk/image/upload/v1750658985/Whisk_3694aae393_gpi1yx.jpg",
+      "https://res.cloudinary.com/dj9qiuosk/image/upload/v1750663045/Whisk_6fe90cfef4_yfqxoq.jpg",
+      "https://res.cloudinary.com/dj9qiuosk/image/upload/v1750658984/Whisk_c6aeb706a0_uup9ie.jpg",
+      "https://res.cloudinary.com/dj9qiuosk/image/upload/v1750658905/Whisk_d4a9fd90e4_i9hpsf.jpg"
+    ]
+  },
+  {
+    "gender": "man",
+    "name": "Mateo",
+    "lastName": "Castillo",
+    "nationality": "Mexicano",
+    "instagram": "mateo_cast",
+    "tiktok": "mateocastillo",
+    "slug": "mateo-castillo",
+    "hairColor": "Negro",
+    "eyeColor": "Cafés",
+    "height": 185,
+    "shoeSize": 43,
+    "chest": 98,
+    "waist": 80,
+    "coverImageUrl": "https://res.cloudinary.com/dj9qiuosk/image/upload/v1750662896/Whisk_6dbe519ddd_cpypgh.jpg",
+    "portfolioImageUrls": [
+      "https://res.cloudinary.com/dj9qiuosk/image/upload/v1750662925/Whisk_48a31e0ab8_mu7ukj.jpg",
+      "https://res.cloudinary.com/dj9qiuosk/image/upload/v1750662927/Whisk_a2020f0019_1_bk3o3l.jpg",
+      "https://res.cloudinary.com/dj9qiuosk/image/upload/v1750662929/Whisk_a2020f0019_vgiixz.jpg"
+    ]
+  },
+  {
+    "gender": "man",
+    "name": "Lucas",
+    "lastName": "Silva",
+    "nationality": "Brasileño",
+    "instagram": "lucassilva",
+    "tiktok": "lucas.silva",
+    "slug": "lucas-silva",
+    "hairColor": "Castaño",
+    "eyeColor": "Verdes",
+    "height": 188,
+    "shoeSize": 44,
+    "chest": 102,
+    "waist": 82,
+    "coverImageUrl": "https://res.cloudinary.com/dj9qiuosk/image/upload/v1750663897/Whisk_2a5efae188_kz4wwg.jpg",
+    "portfolioImageUrls": [
+      "https://res.cloudinary.com/dj9qiuosk/image/upload/v1750662838/Whisk_646865c4ba_emmvrv.jpg",
+      "https://res.cloudinary.com/dj9qiuosk/image/upload/v1750662837/Whisk_799d4b5d6a_mcylkv.jpg",
+      "https://res.cloudinary.com/dj9qiuosk/image/upload/v1750662839/Whisk_a8206b544f_pjqkg2.jpg",
+      "https://res.cloudinary.com/dj9qiuosk/image/upload/v1750663883/Whisk_ee69082c22_q18ho2.jpg"
+    ]
+  }
+]
