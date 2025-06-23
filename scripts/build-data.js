@@ -8,10 +8,9 @@ const { v2: cloudinary } = require('cloudinary');
 require('dotenv').config({ path: path.resolve(process.cwd(), '.env.local') });
 
 // --- Configuración ---
-const GITHUB_EXCEL_URL = process.env.GITHUB_EXCEL_URL; // ej: 'https://raw.githubusercontent.com/user/repo/main/models.xlsx'
+const GITHUB_EXCEL_URL = process.env.GITHUB_EXCEL_URL;
 const DATA_FILE_PATH = path.join(process.cwd(), 'public/data/models.json');
 
-// Configuración de Cloudinary desde variables de entorno
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -22,11 +21,21 @@ cloudinary.config({
 // --- Funciones de Ayuda ---
 
 /**
- * Procesa una hoja del archivo Excel y la convierte en un array de objetos.
- * @param {xlsx.WorkSheet} sheet - La hoja de trabajo de la librería xlsx.
- * @param {string} gender - 'woman' o 'man' para procesar campos específicos.
- * @returns {Array<Object>} - Un array con los datos de los modelos.
+ * Inserta parámetros de optimización en una URL de Cloudinary.
+ * @param {string} url - La URL original de Cloudinary.
+ * @returns {string} - La nueva URL con optimizaciones.
  */
+function getOptimizedCloudinaryUrl(url) {
+    if (!url) return null;
+    // Parámetros:
+    // w_1000: Ancho máximo de 1000px
+    // q_auto: Calidad automática
+    // f_auto: Formato automático (servirá WebP a navegadores compatibles)
+    const optimizationParams = 'w_1000,q_auto,f_auto';
+    return url.replace('/upload/', `/upload/${optimizationParams}/`);
+}
+
+
 function processSheet(sheet, gender) {
   const jsonData = xlsx.utils.sheet_to_json(sheet);
   
@@ -49,7 +58,7 @@ function processSheet(sheet, gender) {
       modelData.bust = row['Busto'];
       modelData.waist = row['Cintura'];
       modelData.hips = row['Cadera'];
-    } else { // man
+    } else {
       modelData.chest = row['Pecho'];
       modelData.waist = row['Cintura'];
     }
@@ -58,32 +67,29 @@ function processSheet(sheet, gender) {
   });
 }
 
-/**
- * Obtiene las URLs de las imágenes de un modelo desde Cloudinary.
- * @param {string} slug - El identificador único del modelo.
- * @returns {Promise<{coverUrl: string, portfolioUrls: string[]}>}
- */
 async function getCloudinaryImages(slug) {
   try {
-    // Obtener imagen de portada
     const coverResult = await cloudinary.search
       .expression(`folder:models/${slug}/cover`)
       .sort_by('public_id', 'desc')
       .max_results(1)
       .execute();
-    const coverUrl = coverResult.resources[0]?.secure_url || null;
 
-    // Obtener imágenes del portafolio
+    // MODIFICACIÓN: Optimizamos la URL de la portada
+    const coverUrl = getOptimizedCloudinaryUrl(coverResult.resources[0]?.secure_url);
+
     const portfolioResult = await cloudinary.search
       .expression(`folder:models/${slug}/portfolio`)
       .sort_by('public_id', 'asc')
-      .max_results(50) // Límite de 50 imágenes por portafolio
+      .max_results(50)
       .execute();
-    const portfolioUrls = portfolioResult.resources.map(res => res.secure_url);
+
+    // MODIFICACIÓN: Optimizamos cada URL del portafolio
+    const portfolioUrls = portfolioResult.resources.map(res => getOptimizedCloudinaryUrl(res.secure_url));
 
     return { coverUrl, portfolioUrls };
   } catch (error) {
-    console.error(`Error fetching images for slug ${slug}:`, error);
+    console.error(`Error fetching images for slug ${slug}:`, error.message);
     return { coverUrl: null, portfolioUrls: [] };
   }
 }
@@ -100,12 +106,10 @@ async function buildData() {
   }
 
   try {
-    // 1. Descargar el archivo Excel desde GitHub
     console.log('1/4 - Descargando archivo Excel desde GitHub...');
     const response = await axios.get(GITHUB_EXCEL_URL, { responseType: 'arraybuffer' });
     const workbook = xlsx.read(response.data, { type: 'buffer' });
 
-    // 2. Procesar las hojas del Excel
     console.log('2/4 - Procesando hojas de Excel...');
     const womenSheet = workbook.Sheets['Mujeres'];
     const menSheet = workbook.Sheets['Hombres'];
@@ -118,8 +122,7 @@ async function buildData() {
     const menData = processSheet(menSheet, 'man');
     let allModels = [...womenData, ...menData];
 
-    // 3. Enriquecer los datos con imágenes de Cloudinary
-    console.log('3/4 - Obteniendo URLs de imágenes desde Cloudinary...');
+    console.log('3/4 - Obteniendo y optimizando URLs de imágenes desde Cloudinary...');
     const enrichedModels = [];
     for (const model of allModels) {
       if (!model.slug) {
@@ -135,7 +138,6 @@ async function buildData() {
       });
     }
 
-    // 4. Guardar los datos combinados en un archivo JSON
     console.log('4/4 - Guardando datos en public/data/models.json...');
     fs.writeFileSync(DATA_FILE_PATH, JSON.stringify(enrichedModels, null, 2));
 
@@ -144,7 +146,7 @@ async function buildData() {
   } catch (error) {
     console.error('--- ¡Error durante la construcción de datos! ---');
     console.error(error.message);
-    process.exit(1); // Termina el proceso con un código de error
+    process.exit(1);
   }
 }
 
