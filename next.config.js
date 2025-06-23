@@ -1,15 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Esta es la sección clave que da permiso a Next.js
+  // para cargar imágenes desde tu cuenta de Cloudinary.
   images: {
-    // REMOVIDO: Eliminamos la línea 'unoptimized: true'
-    // para volver a activar la optimización de Next.js.
+    // AÑADIDO PARA DEPURACIÓN: Desactivamos la optimización de imágenes.
+    // Esto hará que Next.js sirva las imágenes directamente desde Cloudinary
+    // sin intentar procesarlas. Es una prueba para aislar el problema.
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'res.cloudinary.com',
         port: '',
-        pathname: '/**',
+        pathname: '/**', // Permite cualquier imagen de tu cuenta
       },
     ],
   },
