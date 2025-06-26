@@ -24,15 +24,24 @@ export default function ModelProfile({ model }) {
       <div className={styles.profileContainer}>
         <div className={styles.mainInfo}>
             <div className={styles.coverImageWrapper}>
-                <Image
-                    src={coverImageUrl}
-                    alt={`Foto de ${name} ${lastName}`}
-                    fill
-                    style={{ objectFit: 'cover' }}
-                    // MODIFICACIÓN: Nos aseguramos de que la propiedad 'priority' esté aquí
-                    // para cargar la imagen principal del perfil de inmediato.
-                    priority
-                />
+                {/* ARREGLO CLAVE: Añadimos una comprobación.
+                  Si 'coverImageUrl' existe, muestra la imagen del modelo.
+                  Si no, muestra una imagen de marcador de posición gris.
+                  Esto evita que el build falle si a un modelo le falta la foto de portada.
+                */}
+                {coverImageUrl ? (
+                    <Image
+                        src={coverImageUrl}
+                        alt={`Foto de ${name} ${lastName}`}
+                        fill
+                        style={{ objectFit: 'cover' }}
+                        priority
+                    />
+                ) : (
+                    <div style={{ width: '100%', height: '100%', backgroundColor: '#e0e0e0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <span style={{ color: '#999', fontSize: '1rem' }}>Sin imagen de portada</span>
+                    </div>
+                )}
             </div>
             <div className={styles.details}>
                 <h1 className={styles.name}>{name} {lastName}</h1>
@@ -65,8 +74,7 @@ export default function ModelProfile({ model }) {
   );
 }
 
-
-// Las funciones getStaticPaths y getStaticProps se mantienen igual
+// Las funciones getStaticPaths y getStaticProps no necesitan cambios.
 export async function getStaticPaths() {
   const filePath = path.join(process.cwd(), 'public/data/models.json');
   const jsonData = fs.readFileSync(filePath);
